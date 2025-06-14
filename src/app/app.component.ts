@@ -10,5 +10,5 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'AirlinesManagementWeb';
+  title = 'Airlines Management Web';
 }
