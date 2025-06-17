@@ -1,0 +1,36 @@
+<div class="filters-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Filtrar por Marca</mat-label>
+        <input matInput placeholder="Ej. Aerospatiale" [formControl]="brandFilter">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Ordenar por</mat-label>
+        <mat-select [formControl]="sortControl">
+            <mat-option value="cat">Categoría</mat-option>
+            <mat-option value="pax">Pasajeros</mat-option>
+            <mat-option value="range">Rango</mat-option>
+            <mat-option value="speed">Velocidad</mat-option>
+            <mat-option value="consumption">Consumo</mat-option>
+            <mat-option value="price">Precio</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<mat-grid-list cols="1" rowHeight="450px" gutterSize="16px" [cols]="breakpoint">
+    <mat-grid-tile *ngFor="let plane of filteredPlanes">
+        <mat-card class="plane-card" [ngClass]="{'hovered': isHovered}">
+            <img mat-card-image [src]="'/images/' + plane.img" alt="{{ plane.model }}" class="plane-image">
+            <mat-card-header>
+                <mat-card-title>{{ plane.brand }} {{ plane.model }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p><strong>Cat:</strong> {{ plane.cat }}</p>
+                <p><strong>Pasajeros:</strong> {{ plane.pax }}</p>
+                <p><strong>Rango:</strong> {{ plane.range }} km</p>
+                <p><strong>Velocidad:</strong> {{ plane.speed }} km/h</p>
+                <p><strong>Consumo:</strong> {{ plane.consumption }} L/km</p>
+                <p><strong>Precio:</strong> ${{ plane.price | number }}</p>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
